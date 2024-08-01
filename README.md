@@ -1,66 +1,93 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# DataFeeder
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Description
+The goal of the promted Task was to create a command line programm that The goal of the given task was to create a command line program that would process a local XML file and push its data into a database. The storage to read from and push to should be variable and configurable. Errors should be written to a log file and the application should be tested.
 
-## About Laravel
+The idea for the command was to keep it as simple as possible while meeting the given criteria as well as possible. The first step was to convert the XML file to an array and flatten it so that each entry could be inserted into the table. In addition, the variables for the file path and table name were added, with certain validations already added in the process.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Then the validations were extended and error logging to a local file was added. For each file a new error log file is created for a better overview.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+The last step was to create a test for the command. Since I am new to writing tests, especially in PEST, I kept them as simple as possible. I was not able to write them to my full satisfaction, but I am motivated to learn more about the topic and expand my skills.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+It is worth mentioning that besides reading and searching the documentations and online forums, I used ChatGPT to help me overcome certain difficulties. I hope I'll be able to learn much more and I'm grateful for the given opportunity to try to complete this challenge.
 
-## Learning Laravel
+Also, I apparently had an old git account logged in, so please don't be confused, I am both author "s79034" and "hehopp".
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Table of Contents
+1. [Installation](#installation)
+2. [Commands](#commands)
+3. [Configuration](#configuration)
+4. [Testing](#testing)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Installation
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Prerequisites
+Ensure you have the following software installed:
+- **PHP**: Version X.X or later. [Download PHP](https://www.php.net/downloads).
+- **Composer**: Dependency management tool for PHP. [Install Composer](https://getcomposer.org/download/).
+- **Laravel**: Framework for PHP applications. (Typically included via Composer.)
+- **Database**: MariaDB or other database. [Install MariaDB](https://mariadb.com/downloads/).
 
-## Laravel Sponsors
+### Steps
+1. **Clone the repository:**
+    ```bash
+    git clone https://github.com/hehopp/DataFeederTest.git
+    cd DataFeeder
+    ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+2. **Install dependencies:**
+    ```bash
+    composer install
+    npm install
+    npm run dev
+    ```
 
-### Premium Partners
+3. **Copy `.env.example` to `.env`:**
+    ```bash
+    cp .env.example .env
+    ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+4. **Generate application key:**
+    ```bash
+    php artisan key:generate
+    ```
 
-## Contributing
+5. **Set up your database:**
+    - Open `.env` file and set your database credentials.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+6. **Run migrations and seeders:**
+    ```bash
+    php artisan migrate --seed
+    ```
 
-## Code of Conduct
+7. **Install Pest (if not already included):**
+    ```bash
+    composer require pestphp/pest --dev
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    **Optionally, install Pest’s plugin for Laravel:**
+    ```bash
+    composer require pestphp/pest-plugin-laravel --dev
+    ```
 
-## Security Vulnerabilities
+    **Publish Pest's configuration (if needed):**
+    ```bash
+    php artisan pest:install
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Commands
 
-## License
+### Custom Console Command
+To start the import of the XML data into a database, enter the following command:
+    ```bash
+    php artisan app:import-xml-data {file} {table}
+    ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Testing
+
+### Pest Tests
+To run pest tests use the following:
+    ```bash
+    php artisan test
+    ```
+
