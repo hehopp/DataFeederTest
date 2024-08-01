@@ -81,7 +81,7 @@ Ensure you have the following software installed:
 To start the import of the XML data into a database, enter the following command:
  ```bash
 php artisan app:import-xml-data {file} {table}
-
+```
 
 ## Testing
 
@@ -89,3 +89,4 @@ php artisan app:import-xml-data {file} {table}
 To run pest tests use the following:
 ```bash
 php artisan test
+```
