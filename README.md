@@ -79,15 +79,13 @@ Ensure you have the following software installed:
 
 ### Custom Console Command
 To start the import of the XML data into a database, enter the following command:
-    ```bash
-    php artisan app:import-xml-data {file} {table}
-    ```
+ ```bash
+php artisan app:import-xml-data {file} {table}
+
 
 ## Testing
 
 ### Pest Tests
 To run pest tests use the following:
-    ```bash
-    php artisan test
-    ```
-
+```bash
+php artisan test
